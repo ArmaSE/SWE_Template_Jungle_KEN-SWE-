@@ -112,13 +112,13 @@ class Params
     {
        title = "PAK kräver en sjukvårdsinrättning."
        values[]={0,1};
-       texts[]={ "Ja - Alla sjukvårdare måste ha tillgång till en sjukvårdsinrättning för att kunna sätta PAK.","Nej - Alla sjukvårdare kan alltid sätta PAK på en skadad. Nästa fråga är inaktiverad."};
+       texts[]={ "Ja - Alla sjukvårdare måste ha tillgång till en sjukvårdsinrättning för att kunna sätta PAK.","Nej - Alla sjukvårdare kan alltid sätta PAK på en skadad."};
        default = 0; // Som vanligt :)
     };    
 
 		class PARAM_PAKFIX_PLUT
     {
-       title = "PAK kräver en sjukvårdsinrättning (Plutsjukvårdaren)."
+       title = "PAK kräver en sjukvårdsinrättning. Version 2."
        values[]={0,1};
        texts[]={ "Ja - Även plutonsjukvårdaren måste ha tillgång till en sjukvårdsinrättning för att kunna sätta PAK.","Nej - Enbart plutonsjukvårdaren kan alltid sätta PAK utan sjukvårdsinrättning."};
        default = 0; // Som vanligt :)

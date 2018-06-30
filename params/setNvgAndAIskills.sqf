@@ -1,12 +1,15 @@
 //Params are pulled for settings
 //Set AI Skills for current AI
-
- SKILLS = paramsarray select 4;
+SKILLS = paramsarray select 4;
+  
+// Will set use of NVG for current placed AI.
+ NVG = paramsarray select 3;
  
- if (SKILLS==1) then
- {
+ //if (SKILLS==0) and (NVGs==0) then exit;
  
- //This is the AI skills
+ 
+  
+  //This is the AI skills
  //Made by eRazeri & Magoo      Range:
  _asp = 0.5;  //Aiming Speed     [0.5,1]
  _aac = 0.3;  //Aiming Accuracy  [0,1]
@@ -22,8 +25,9 @@
  //Here we loop through all units and tag them with skills and a check variable
  While {true} do {
  
+ 
+ if (SKILLS==1)  then
  {
- if (side _x == east) then {
    
  _x setSkill ["aimingSpeed", _asp];
  _x setSkill ["aimingAccuracy", _aac];
@@ -38,15 +42,10 @@
  
   
  sleep 0.02;
- };
  
- //Params are pulled for settings
-// Will set use of NVG for current placed AI.
- NVG = paramsarray select 3;
+};
 
  
- if (side _x == east) then {
-    
   //Here we set if AI should have NVGs
  if (NVG==1) then
  {
@@ -57,13 +56,13 @@
  };
 
  sleep 0.02;
- };
+
  
  
  
  } forEach allUnits;
 
- sleep 30;
+ sleep 10;
 
  };
 
