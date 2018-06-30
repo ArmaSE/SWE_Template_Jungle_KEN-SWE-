@@ -342,7 +342,7 @@ switch (typeOf player) do {
 	
 	
 	// Combat Life Saver (Plutonsjukvårdare)
-	case  "B_recon_medic_F" : {
+	case  "B_Patrol_Medic_F" : {
 
 
 		comment "Add containers";

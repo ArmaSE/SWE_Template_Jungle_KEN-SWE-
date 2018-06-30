@@ -4,6 +4,8 @@ player execVM "respawn\respawnLoadouts.sqf"; // Tillhör respawn-script.
 
 setPlayerRespawnTime (paramsArray select 0);
 
+
+
 //Set if medic need a medic facility for use of PAK
 if ((paramsArray select 5) isEqualTo True)  then { 
 	switch (typeOf player) do {
@@ -42,3 +44,7 @@ if ((paramsArray select 6) isEqualTo True)  then {
 		};
 	};
 };
+
+
+
+

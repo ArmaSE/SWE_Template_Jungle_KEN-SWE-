@@ -16,10 +16,10 @@ class EditorData
 	};
 	class Camera
 	{
-		pos[]={8485.4971,87.849533,10234.87};
-		dir[]={0.52841622,-0.84161872,-0.11255892};
-		up[]={0.82314229,0.54005963,-0.1753391};
-		aside[]={-0.208361,4.9999289e-007,-0.97816014};
+		pos[]={8540.1084,45.307667,10216.435};
+		dir[]={-0.50117713,-0.86058813,0.091875829};
+		up[]={-0.84646702,0.50929803,0.15517512};
+		aside[]={0.18033825,7.5076241e-007,0.98371917};
 	};
 };
 binarizationWanted=0;
@@ -256,7 +256,7 @@ class Mission
 						isPlayable=1;
 					};
 					id=3;
-					type="B_recon_medic_F";
+					type="B_Patrol_Medic_F";
 					class CustomAttributes
 					{
 						class Attribute0
@@ -5263,7 +5263,7 @@ class Mission
 						isPlayable=1;
 					};
 					id=115;
-					type="B_Soldier_SL_F";
+					type="B_Patrol_Medic_F";
 					class CustomAttributes
 					{
 						class Attribute0
@@ -5758,7 +5758,7 @@ class Mission
 			class PositionInfo
 			{
 				position[]={8491,21.654791,10222};
-				angles[]={-0,5.0548744,0};
+				angles[]={0,5.0548744,0};
 			};
 			side="Empty";
 			flags=4;
@@ -5797,7 +5797,7 @@ class Mission
 			class PositionInfo
 			{
 				position[]={8490,21.654791,10218};
-				angles[]={-0,5.0548744,0};
+				angles[]={0,5.0548744,0};
 			};
 			side="Empty";
 			flags=4;
@@ -6143,6 +6143,29 @@ class Mission
 				speedMode="LIMITED";
 			};
 			id=146;
+			class CustomAttributes
+			{
+				class Attribute0
+				{
+					property="groupID";
+					expression="[_this, _value] call CBA_fnc_setCallsign";
+					class Value
+					{
+						class data
+						{
+							class type
+							{
+								type[]=
+								{
+									"STRING"
+								};
+							};
+							value="Petter Adam";
+						};
+					};
+				};
+				nAttributes=1;
+			};
 		};
 		class Item24
 		{
@@ -7165,7 +7188,7 @@ class Mission
 			class PositionInfo
 			{
 				position[]={8525,22.794924,10238.911};
-				angles[]={-0,4.8398986,0.0026520467};
+				angles[]={0,4.8398986,0.0026520467};
 			};
 			side="Empty";
 			flags=4;
@@ -7174,13 +7197,14 @@ class Mission
 			};
 			id=165;
 			type="B_Heli_Transport_03_F";
+			atlOffset=-9.5367432e-006;
 		};
 		class Item27
 		{
 			dataType="Object";
 			class PositionInfo
 			{
-				position[]={8524.0342,21.300913,10198.993};
+				position[]={8498.0342,21.300913,10249.993};
 				angles[]={-0,5.1295996,0};
 			};
 			side="Empty";

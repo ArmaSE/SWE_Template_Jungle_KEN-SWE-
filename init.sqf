@@ -24,18 +24,6 @@ _endevent = addMissionEventHandler ["Ended",{
 	hint "exporting"; [] call ocap_fnc_exportData;
 }];
 
-//Player init: this will only run on players. Use it to add the briefing and any player-specific stuff like action-menu items.
-if (!isServer || (isServer && !isDedicated) ) then {
-	// Player things
-	
-	//put in briefings
-	
-	null = [] execVM "brief\briefing.sqf";
-	
-
-	};
-
-	
 //Set tasks
 task1=false; task2=false; task3=false; task4=false; task5=false; task6=false; task7=false; task8=false; task9=false; task10=false;
 
@@ -43,19 +31,15 @@ task1=false; task2=false; task3=false; task4=false; task5=false; task6=false; ta
 // ammo1 hideObjectGlobal true; ammo2 hideObjectGlobal true; ammo3 hideObjectGlobal true; c1 hideObjectGlobal true; c2 hideObjectGlobal true; c3 hideObjectGlobal true; ammo1 enableSimulationGlobal false; ammo2 enableSimulationGlobal false; ammo3 enableSimulationGlobal true; c1 enableSimulationGlobal false; c2 enableSimulationGlobal false; c3 enableSimulationGlobal false;
 
 
-//Serverns init
-if (isServer) then {
-// 	_other = execVM "ai\general.sqf";
+//Player init: this will only run on players. Use it to add the briefing and any player-specific stuff like action-menu items.
+if (!isServer || (isServer && !isDedicated) ) then {
+	// Player things
 
-//Set AI Skills
-null=execvm "params\setAIskills.sqf"; 
+	//put in briefings
 
-//Set NVG for AI
-null=execvm "params\setAInvg.sqf"; 
-};
+	null = [] execVM "brief\briefing.sqf";
 
-
-
+	
 
 
 // Only run on clients, excluding HCs
@@ -108,10 +92,11 @@ null=execvm "params\setAInvg.sqf";
 			// Check that Zeus has been assigned to player
 			_curatorList call _checkIfValidCuratorSlot;
 			
-			sleep 10.0;			
+			sleep 10.0;
 		};			
 	};		
 };
 
+	};
 
 
