@@ -1,0 +1,151 @@
+author = "Ken from Arma Sweden";
+onLoadName = "Operation Test 2018 GM";	// Namn på scenario.
+OnLoadMission = "Driv ut Milisen ifrån Tanoa.";	// Beskrivning som visas på laddningsskämen (håll den kort).
+loadScreen = "loadscreen.paa";				// Sökväg till bild på laddningsskärmen (2048x1024).
+
+overviewPicture="loadscreen.paa";
+overviewText="Milisen försöker ta över delar av Tanoa. Slå mot fientliga markeringar. Co93 Template Jungle Tanoa GM - Version 2018-06-24";
+
+
+class header{
+	gametype = COOP;	// Speltyp (https://community.bistudio.com/wiki/Multiplayer_Game_Types).
+	minPlayers = 1;		// Minimalt antal spelare.
+	maxPlayers = 93; 	// Maximalt antal spelare.
+}
+
+
+respawn = 3;
+//respawnDelay = 300;						
+respawnVehicleDelay = 900;					
+respawnDialog = 0;							
+respawnTemplates[] = {"Spectator","CustomWave", "MenuPosition"};
+respawnOnStart = 1;
+enableSaving = [ false, false ]; // Saving disabled without autosave.
+
+
+disabledAI = 1;			// Stänger av AI-spelare i laget.
+joinUnassigned = 1;		// Hindrar spelare från att automatiskt bli utplacerade i lobbyn.
+enableDebugConsole = 1;		// Aktiverar konsolen för admin.
+
+// Olika avslut för scenariot (anropas med trigger, t.ex:  "win" call BIS_fnc_endMissionServer;  ).
+class CfgDebriefing
+{  
+	
+		// Anropas när alla mål är avklarade; ändras ej!.
+	class win
+	{
+		title = "Yeah!";
+		subtitle = "Uppdragen är klara!";
+		description = "Ni har rört om rejält i grytan! Bra jobbat!";
+		pictureBackground = "";
+		picture = "b_inf";
+		pictureColor[] = {0.0,0.3,0.6,1};
+	};
+	
+	// Anropas nr alla spelare är döda ändras ej!
+	
+	class lose
+	{
+		title = "Misslyckat!";
+		subtitle = "Era uppdrag misslyckades!";
+		description = "Samtliga i er pluton är döda! :(";
+		pictureBackground = "";
+		picture = "KIA";
+		pictureColor[] = {0.6,0.1,0.2,1};
+	};
+		
+};
+
+// Parametrar för scenariot (ställs in i lobbyn).
+class Params
+{
+
+	
+	// Respawn-tid; ändras ej!
+	class RespawnDelay
+	{
+		title = "Respawn time";
+		values[] = {30, 120, 300, 480};
+		texts[] = {"30-60 seconds", "2-4 minutes", "5-10 minutes", "8-16 minutes"};
+		default = 120;
+		file = "params\setRespawnDelay.sqf";
+	};
+			
+		class Daytime
+	{
+		title = "Uppdragsstart (Ljusa timmar: 07:00 - 17:30)";
+		texts[] = {"Jättetidigt 04:00","Tidig morgon 06:00","Gryning 07:00","Frukost 08:00","Förmiddag 10:00","Lunch 12:00","Mellanmålsdags 14:00","Eftermiddag 15:00","Middag 18:00","Kväll 21:00","Sen kväll 23:00","Midnatt 00:00","Natt 02:00"};
+		values[] = {4,6,7,8,10,12,14,15,18,21,23,0,2};
+		default = 7;
+		function = "BIS_fnc_paramDaytime"; // (Optional) [[Functions_Library_(Arma_3)|Function]] [[call]]ed when player joins, selected value is passed as an argument
+		isGlobal = 0; // (Optional) 1 to execute script / function locally for every player who joins, 0 to do it only on server
+	};
+	
+	
+	
+	class ViewDistance
+	{
+		title = "Sikt (i meter)";
+		values[] = {500,1000,2000,3000,4000,5000};
+		// When 'texts' are missing, values will be displayed directly instead
+		default = 3000;
+		file = "params\setViewDistance.sqf"; // (Optional) Script [[call]]ed when player joins, selected value is passed as an argument
+	};
+	
+	   class PARAM_NO_NVG 
+    {
+       title = "Fiendens nattutrustning.";
+       values[]={0,1};
+       texts[]={ "Fiender med befintliga mörkermedel får behålla dem.","Ta bort fiendens mörkermedel och tvinga dem som kan att använda sina vapenlampor."};
+       default = 0; //Standard CSAT med NVG där det finns.
+    };
+
+    class PARAM_AI_SKILLS
+    {
+       title = "Justera AI:ns förmåga vart 30 sek.";
+       values[]={0,1};
+       texts[]={ "NormalAI. Ser er på 2 mils avstånd och kan skjuta därifrån.","Fienden ser sämre på längre håll. Men är modiga och duktiga skyttar."};
+       default = 1; //Fienden spottar sämre. :)
+    };    
+	
+	class PARAM_PAKFIX
+    {
+       title = "PAK kräver en sjukvårdsinrättning."
+       values[]={0,1};
+       texts[]={ "Ja - Alla sjukvårdare måste ha tillgång till en sjukvårdsinrättning för att kunna sätta PAK.","Nej - Alla sjukvårdare kan alltid sätta PAK på en skadad. Nästa fråga är inaktiverad."};
+       default = 0; // Som vanligt :)
+    };    
+
+		class PARAM_PAKFIX_PLUT
+    {
+       title = "PAK kräver en sjukvårdsinrättning (Plutsjukvårdaren)."
+       values[]={0,1};
+       texts[]={ "Ja - Även plutonsjukvårdaren måste ha tillgång till en sjukvårdsinrättning för att kunna sätta PAK.","Nej - Enbart plutonsjukvårdaren kan alltid sätta PAK utan sjukvårdsinrättning."};
+       default = 0; // Som vanligt :)
+    }; 
+	
+	
+};
+
+
+// Tillhör respawn-script. ändras ej!
+class CfgRespawnTemplates
+{
+	class CustomPosition
+	{
+		onPlayerKilled = "respawn\customRespawnPosition.sqf";
+		onPlayerRespawn = "respawn\customRespawnPosition.sqf";
+	};
+
+	class CustomCounter
+	{
+		onPlayerKilled = "respawn\customRespawnCounter.sqf";
+		onPlayerRespawn = "respawn\customRespawnCounter.sqf";
+	};
+	class CustomWave
+	{
+		onPlayerKilled = "respawn\customWave.sqf";
+		onPlayerRespawn = "respawn\customWave.sqf";
+	};
+};
+
