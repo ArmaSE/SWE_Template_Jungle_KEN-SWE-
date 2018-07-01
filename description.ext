@@ -96,7 +96,7 @@ class Params
     {
        title = "Fiendens nattutrustning.";
        values[]={0,1};
-       texts[]={ "Fiender med befintliga mörkermedel får behålla dem.","Ta bort fiendens mörkermedel och tvinga dem som kan att använda sina vapenlampor."};
+       texts[]={ "Fiender med befintliga mörkermedel får behålla dem.","Ta bort mörkermedel ifrån CSAT styrkor."};
        default = 0; //Standard CSAT med NVG där det finns.
     };
 
